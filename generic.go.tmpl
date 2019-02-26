@@ -1,0 +1,12 @@
+package convert
+
+{{range .In.OutputTypes}}
+func {.FuncName}(arg interface{}) {
+    switch v:=arg.(type) {
+        {{range .InT}}
+        case {{.}}:
+            return {{.OutT}}(v)
+        {{end}}
+    }
+}
+{{end}}
